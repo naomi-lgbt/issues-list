@@ -1,0 +1,60 @@
+<div>
+  <h1>Naomi's Open Issues</h1>
+  <p>
+    This app is designed to allow you to see all of the open issues across all
+    of our organisations. Feel free to use the buttons below to filter issues
+    and see what's available!
+  </p>
+  <p>Choose an organisation:</p>
+  <button (click)="filterIssues('nhcarrigan', focusedLabel)">
+    Naomi's Repos
+  </button>
+  <button (click)="filterIssues('beccalyria', focusedLabel)">
+    Becca Lyria
+  </button>
+  <button (click)="filterIssues('rosalianightsong', focusedLabel)">
+    Rosalia Nightsong
+  </button>
+  <button (click)="filterIssues('beccalia', focusedLabel)">Beccalia</button>
+  <button (click)="filterIssues('nhcommunity', focusedLabel)">
+    Naomi's Nook
+  </button>
+  <p>Filter by label:</p>
+  <button (click)="filterIssues(focusedOrg, 'good first issue')">
+    Good First Issues
+  </button>
+  <button (click)="filterIssues(focusedOrg, 'help wanted')">
+    Open for Contribution
+  </button>
+  <button (click)="filterIssues(focusedOrg, '')">All Issues</button>
+</div>
+<div *ngIf="!loaded">Issues are loading...</div>
+<div class="issues" *ngFor="let issue of filteredIssues">
+  <img class="avatar" src="{{ issue.user.avatar_url }}" />
+  <section>
+    <p>
+      <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
+    </p>
+    <p>
+      {{
+        issue.repository_url
+          .split("/")
+          .reverse()
+          .slice(0, 2)
+          .reverse()
+          .join("/")
+      }}
+      #{{ issue.number }}
+    </p>
+    <section class="labels">
+      <span
+        class="label"
+        *ngFor="let label of issue.labels"
+        style="background-color: #{{ label.color }}; color: #{{
+          invert(label.color)
+        }};"
+        >{{ label.name }}</span
+      >
+    </section>
+  </section>
+</div>
