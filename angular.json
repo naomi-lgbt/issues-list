@@ -102,8 +102,8 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://www.nhcarrigan.com",
-            "cname": "www.nhcarrigan.com",
+            "baseHref": "https://contribute.nhcarrigan.com",
+            "cname": "contribute.nhcarrigan.com",
             "name": "Naomi Carrigan",
             "email": "nhcarrigan@gmail.com"
           }
