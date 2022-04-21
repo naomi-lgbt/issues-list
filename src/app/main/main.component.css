@@ -1,0 +1,38 @@
+div {
+  margin: auto;
+  width: 85vw;
+  max-width: 550px;
+  background-color: #aea8decc;
+  color: #3a3240;
+}
+
+button, a {
+    cursor: url("https://www.nhcarrigan.com/assets/img/pointer.cur"), pointer;
+}
+
+button {
+    background-color: #3a3240;
+    color: #aea8de;
+}
+
+.issues {
+    margin: 10px auto;
+    border-radius: 50px;
+    display: grid;
+    grid-template-columns: 100px auto;
+    align-items: center;
+    padding: 5px;
+}
+
+
+.avatar {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.label {
+    border-radius: 50px;
+    display: inline-block;
+    margin: 2px;
+    padding: 2px;
+}
