@@ -11,13 +11,20 @@ a {
   cursor: var(--cursor-pointer), pointer;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: var(--dark-blue);
 }
 
 button {
   background-color: var(--dark-purple);
   color: var(--light-blue);
+}
+
+button:disabled {
+  background-color: var(--light-purple);
+  color: var(--dark-blue);
+  cursor: var(--cursor-normal), not-allowed;
 }
 
 .issues {

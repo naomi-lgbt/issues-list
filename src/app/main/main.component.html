@@ -19,27 +19,55 @@
     >!
   </p>
   <p>Choose an organisation:</p>
-  <button (click)="filterIssues('nhcarrigan', focusedLabel)">
+  <button
+    [disabled]="focusedOrg === 'nhcarrigan'"
+    (click)="filterIssues('nhcarrigan', focusedLabel)"
+  >
     Naomi's Repos
   </button>
-  <button (click)="filterIssues('beccalyria', focusedLabel)">
+  <button
+    [disabled]="focusedOrg === 'beccalyria'"
+    (click)="filterIssues('beccalyria', focusedLabel)"
+  >
     Becca Lyria
   </button>
-  <button (click)="filterIssues('rosalianightsong', focusedLabel)">
+  <button
+    [disabled]="focusedOrg === 'rosalianightsong'"
+    (click)="filterIssues('rosalianightsong', focusedLabel)"
+  >
     Rosalia Nightsong
   </button>
-  <button (click)="filterIssues('beccalia', focusedLabel)">Beccalia</button>
-  <button (click)="filterIssues('nhcommunity', focusedLabel)">
+  <button
+    [disabled]="focusedOrg === 'beccalia'"
+    (click)="filterIssues('beccalia', focusedLabel)"
+  >
+    Beccalia
+  </button>
+  <button
+    [disabled]="focusedOrg === 'nhcommunity'"
+    (click)="filterIssues('nhcommunity', focusedLabel)"
+  >
     Naomi's Nook
   </button>
   <p>Filter by label:</p>
-  <button (click)="filterIssues(focusedOrg, 'good first issue')">
+  <button
+    [disabled]="focusedLabel === 'good first issue'"
+    (click)="filterIssues(focusedOrg, 'good first issue')"
+  >
     Good First Issues
   </button>
-  <button (click)="filterIssues(focusedOrg, 'help wanted')">
+  <button
+    [disabled]="focusedLabel === 'help wanted'"
+    (click)="filterIssues(focusedOrg, 'help wanted')"
+  >
     Open for Contribution
   </button>
-  <button (click)="filterIssues(focusedOrg, '')">All Issues</button>
+  <button
+    [disabled]="focusedLabel === ''"
+    (click)="filterIssues(focusedOrg, '')"
+  >
+    All Issues
+  </button>
 </div>
 <div *ngIf="!loaded">Issues are loading...</div>
 <div class="issues" *ngFor="let issue of filteredIssues">
