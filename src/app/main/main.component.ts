@@ -10,6 +10,7 @@ import { GithubService } from '../github.service';
 })
 export class MainComponent implements OnInit {
   public githubData: AggregateData = {
+    "naomi-lgbt": [],
     nhcarrigan: [],
     beccalyria: [],
     beccalia: [],
