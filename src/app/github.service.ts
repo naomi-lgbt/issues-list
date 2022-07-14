@@ -22,7 +22,7 @@ export class GithubService {
       return of(dataFromCache);
     }
     const data = this.http.get<AggregateData>(
-      'https://contribute-api.nhcarrigan.com/data'
+      'https://contribute-api.naomi.lgbt/data'
     );
     data.subscribe((d) => this.responseCache.set('github', data));
     return data;
