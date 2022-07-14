@@ -20,10 +20,16 @@
   </p>
   <p>Choose an organisation:</p>
   <button
+    [disabled]="focusedOrg === 'naomi-lgbt'"
+    (click)="filterIssues('naomi-lgbt', focusedLabel)"
+  >
+    Naomi's Repos
+  </button>
+  <button
     [disabled]="focusedOrg === 'nhcarrigan'"
     (click)="filterIssues('nhcarrigan', focusedLabel)"
   >
-    Naomi's Repos
+    nhcarrigan
   </button>
   <button
     [disabled]="focusedOrg === 'beccalyria'"
