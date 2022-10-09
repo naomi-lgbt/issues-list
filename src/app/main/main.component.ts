@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AggregateData } from 'src/interfaces/AggregateData';
 import { Issue } from 'src/interfaces/Issue';
+import { Pull } from 'src/interfaces/Pull';
 import { GithubService } from '../github.service';
 
 @Component({
@@ -10,27 +11,55 @@ import { GithubService } from '../github.service';
 })
 export class MainComponent implements OnInit {
   public githubData: AggregateData = {
-    "naomi-lgbt": [],
-    nhcarrigan: [],
-    beccalyria: [],
-    beccalia: [],
-    rosalianightsong: [],
-    nhcommunity: [],
+    'naomi-lgbt': {
+      issues: [],
+      pulls: [],
+    },
+    nhcarrigan: {
+      issues: [],
+      pulls: [],
+    },
+    beccalyria: {
+      issues: [],
+      pulls: [],
+    },
+    beccalia: {
+      issues: [],
+      pulls: [],
+    },
+    rosalianightsong: {
+      issues: [],
+      pulls: [],
+    },
+    nhcommunity: {
+      issues: [],
+      pulls: [],
+    },
   };
   public dataString = '';
   public focusedOrg: keyof AggregateData = 'nhcarrigan';
   public focusedLabel = '';
+  public focusedView: 'issues' | 'pulls' = 'issues';
   public filteredIssues: Issue[] = [];
+  public filteredPulls: Pull[] = [];
   public loaded = false;
 
   public filterIssues = (org: keyof AggregateData, label: string) => {
+    this.focusedView = 'issues';
     this.focusedOrg = org;
     this.focusedLabel = label;
-    this.filteredIssues = this.githubData[this.focusedOrg].filter((el) =>
+    this.filteredIssues = this.githubData[this.focusedOrg].issues.filter((el) =>
       this.focusedLabel
         ? el.labels.find((label) => label.name === this.focusedLabel)
         : el
     );
+  };
+
+  public filterPulls = (org: keyof AggregateData, label: string) => {
+    this.focusedView = 'pulls';
+    this.focusedOrg = org;
+    this.focusedLabel = label;
+    this.filteredPulls = this.githubData[this.focusedOrg].pulls;
   };
 
   public invert = (hex: string) => {
@@ -42,6 +71,10 @@ export class MainComponent implements OnInit {
       g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
       b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
     return this.padZero(r) + this.padZero(g) + this.padZero(b);
+  };
+
+  public setView = (view: 'issues' | 'pulls') => {
+    this.focusedView = view;
   };
 
   private padZero = (str: string) => {

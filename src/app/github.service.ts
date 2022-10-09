@@ -13,6 +13,7 @@ export class GithubService {
     'beccalyria',
     'rosalianightsong',
     'nhcommunity',
+    'beccalia',
   ];
   constructor(private http: HttpClient) {}
 
@@ -21,9 +22,7 @@ export class GithubService {
     if (dataFromCache) {
       return of(dataFromCache);
     }
-    const data = this.http.get<AggregateData>(
-      'https://contribute-api.naomi.lgbt/data'
-    );
+    const data = this.http.get<AggregateData>('http://localhost:7080/data');
     data.subscribe((d) => this.responseCache.set('github', data));
     return data;
   }

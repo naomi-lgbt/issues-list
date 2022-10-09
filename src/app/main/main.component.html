@@ -18,90 +18,159 @@
       >support server</a
     >!
   </p>
-  <p>Choose an organisation:</p>
-  <button
-    [disabled]="focusedOrg === 'naomi-lgbt'"
-    (click)="filterIssues('naomi-lgbt', focusedLabel)"
-  >
-    Naomi's Repos
-  </button>
-  <button
-    [disabled]="focusedOrg === 'nhcarrigan'"
-    (click)="filterIssues('nhcarrigan', focusedLabel)"
-  >
-    nhcarrigan
-  </button>
-  <button
-    [disabled]="focusedOrg === 'beccalyria'"
-    (click)="filterIssues('beccalyria', focusedLabel)"
-  >
-    Becca Lyria
-  </button>
-  <button
-    [disabled]="focusedOrg === 'rosalianightsong'"
-    (click)="filterIssues('rosalianightsong', focusedLabel)"
-  >
-    Rosalia Nightsong
-  </button>
-  <button
-    [disabled]="focusedOrg === 'beccalia'"
-    (click)="filterIssues('beccalia', focusedLabel)"
-  >
-    Beccalia
-  </button>
-  <button
-    [disabled]="focusedOrg === 'nhcommunity'"
-    (click)="filterIssues('nhcommunity', focusedLabel)"
-  >
-    Naomi's Nook
-  </button>
-  <p>Filter by label:</p>
-  <button
-    [disabled]="focusedLabel === 'good first issue'"
-    (click)="filterIssues(focusedOrg, 'good first issue')"
-  >
-    Good First Issues
-  </button>
-  <button
-    [disabled]="focusedLabel === 'help wanted'"
-    (click)="filterIssues(focusedOrg, 'help wanted')"
-  >
-    Open for Contribution
-  </button>
-  <button
-    [disabled]="focusedLabel === ''"
-    (click)="filterIssues(focusedOrg, '')"
-  >
-    All Issues
-  </button>
+  <button [disabled]="focusedView === 'issues'" (click)="setView('issues')">Issues</button>
+  <button [disabled]="focusedView === 'pulls'" (click)="setView('pulls')">Pulls</button>
+  <div *ngIf="focusedView === 'issues'">
+    <p>Choose an organisation:</p>
+    <button
+      [disabled]="focusedOrg === 'naomi-lgbt'"
+      (click)="filterIssues('naomi-lgbt', focusedLabel)"
+    >
+      Naomi's Repos
+    </button>
+    <button
+      [disabled]="focusedOrg === 'nhcarrigan'"
+      (click)="filterIssues('nhcarrigan', focusedLabel)"
+    >
+      nhcarrigan
+    </button>
+    <button
+      [disabled]="focusedOrg === 'beccalyria'"
+      (click)="filterIssues('beccalyria', focusedLabel)"
+    >
+      Becca Lyria
+    </button>
+    <button
+      [disabled]="focusedOrg === 'rosalianightsong'"
+      (click)="filterIssues('rosalianightsong', focusedLabel)"
+    >
+      Rosalia Nightsong
+    </button>
+    <button
+      [disabled]="focusedOrg === 'beccalia'"
+      (click)="filterIssues('beccalia', focusedLabel)"
+    >
+      Beccalia
+    </button>
+    <button
+      [disabled]="focusedOrg === 'nhcommunity'"
+      (click)="filterIssues('nhcommunity', focusedLabel)"
+    >
+      Naomi's Nook
+    </button>
+    <p>Filter by label:</p>
+    <button
+      [disabled]="focusedLabel === 'good first issue'"
+      (click)="filterIssues(focusedOrg, 'good first issue')"
+    >
+      Good First Issues
+    </button>
+    <button
+      [disabled]="focusedLabel === 'help wanted'"
+      (click)="filterIssues(focusedOrg, 'help wanted')"
+    >
+      Open for Contribution
+    </button>
+    <button
+      [disabled]="focusedLabel === ''"
+      (click)="filterIssues(focusedOrg, '')"
+    >
+      All Issues
+    </button>
+  </div>
+  <div *ngIf="focusedView === 'pulls'">
+    <p>Choose an organisation:</p>
+    <button
+      [disabled]="focusedOrg === 'naomi-lgbt'"
+      (click)="filterPulls('naomi-lgbt', focusedLabel)"
+    >
+      Naomi's Repos
+    </button>
+    <button
+      [disabled]="focusedOrg === 'nhcarrigan'"
+      (click)="filterPulls('nhcarrigan', focusedLabel)"
+    >
+      nhcarrigan
+    </button>
+    <button
+      [disabled]="focusedOrg === 'beccalyria'"
+      (click)="filterPulls('beccalyria', focusedLabel)"
+    >
+      Becca Lyria
+    </button>
+    <button
+      [disabled]="focusedOrg === 'rosalianightsong'"
+      (click)="filterPulls('rosalianightsong', focusedLabel)"
+    >
+      Rosalia Nightsong
+    </button>
+    <button
+      [disabled]="focusedOrg === 'beccalia'"
+      (click)="filterPulls('beccalia', focusedLabel)"
+    >
+      Beccalia
+    </button>
+    <button
+      [disabled]="focusedOrg === 'nhcommunity'"
+      (click)="filterPulls('nhcommunity', focusedLabel)"
+    >
+      Naomi's Nook
+    </button>
+  </div>
 </div>
 <div *ngIf="!loaded">Issues are loading...</div>
-<div class="issues" *ngFor="let issue of filteredIssues">
-  <img class="avatar" src="{{ issue.user.avatar_url }}" />
-  <section>
-    <p>
-      <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
-    </p>
-    <p>
-      {{
-        issue.repository_url
-          .split("/")
-          .reverse()
-          .slice(0, 2)
-          .reverse()
-          .join("/")
-      }}
-      #{{ issue.number }}
-    </p>
-    <section class="labels">
-      <span
-        class="label"
-        *ngFor="let label of issue.labels"
-        style="background-color: #{{ label.color }}; color: #{{
-          invert(label.color)
-        }};"
-        >{{ label.name }}</span
-      >
+<div *ngIf="focusedView === 'issues'">
+  <div class="issues" *ngFor="let issue of filteredIssues">
+    <img class="avatar" src="{{ issue.user.avatar_url }}" />
+    <section>
+      <p>
+        <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
+      </p>
+      <p>
+        {{
+          issue.repository_url
+            .split("/")
+            .reverse()
+            .slice(0, 2)
+            .reverse()
+            .join("/")
+        }}
+        #{{ issue.number }}
+      </p>
+      <section class="labels">
+        <span
+          class="label"
+          *ngFor="let label of issue.labels"
+          style="background-color: #{{ label.color }}; color: #{{
+            invert(label.color)
+          }};"
+          >{{ label.name }}</span
+        >
+      </section>
     </section>
-  </section>
+  </div>
+</div>
+<div *ngIf="focusedView === 'pulls'">
+  <div class="issues" *ngFor="let issue of filteredPulls">
+    <img class="avatar" src="{{ issue.user.avatar_url }}" />
+    <section>
+      <p>
+        <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
+      </p>
+      <p>
+        {{ issue.url.split("/").reverse().slice(0, 2).reverse().join("/") }}
+        #{{ issue.number }}
+      </p>
+      <section class="labels">
+        <span
+          class="label"
+          *ngFor="let label of issue.labels"
+          style="background-color: #{{ label.color }}; color: #{{
+            invert(label.color)
+          }};"
+          >{{ label.name }}</span
+        >
+      </section>
+    </section>
+  </div>
 </div>
