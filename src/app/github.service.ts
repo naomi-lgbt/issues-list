@@ -13,6 +13,7 @@ export class GithubService {
     'beccalyria',
     'rosalianightsong',
     'nhcommunity',
+    'beccalia',
   ];
   constructor(private http: HttpClient) {}
 
