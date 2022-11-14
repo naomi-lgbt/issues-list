@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
       issues: [],
       pulls: [],
     },
-    nhcommunity: {
+    'naomis-novas': {
       issues: [],
       pulls: [],
     },

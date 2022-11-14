@@ -18,8 +18,12 @@
       >support server</a
     >!
   </p>
-  <button [disabled]="focusedView === 'issues'" (click)="setView('issues')">Issues</button>
-  <button [disabled]="focusedView === 'pulls'" (click)="setView('pulls')">Pulls</button>
+  <button [disabled]="focusedView === 'issues'" (click)="setView('issues')">
+    Issues
+  </button>
+  <button [disabled]="focusedView === 'pulls'" (click)="setView('pulls')">
+    Pulls
+  </button>
   <div *ngIf="focusedView === 'issues'">
     <p>Choose an organisation:</p>
     <button
@@ -53,8 +57,8 @@
       Beccalia
     </button>
     <button
-      [disabled]="focusedOrg === 'nhcommunity'"
-      (click)="filterIssues('nhcommunity', focusedLabel)"
+      [disabled]="focusedOrg === 'naomis-novas'"
+      (click)="filterIssues('naomis-novas', focusedLabel)"
     >
       Naomi's Nook
     </button>
@@ -111,8 +115,8 @@
       Beccalia
     </button>
     <button
-      [disabled]="focusedOrg === 'nhcommunity'"
-      (click)="filterPulls('nhcommunity', focusedLabel)"
+      [disabled]="focusedOrg === 'naomis-novas'"
+      (click)="filterPulls('naomis-novas', focusedLabel)"
     >
       Naomi's Nook
     </button>
