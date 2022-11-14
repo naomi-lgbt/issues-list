@@ -12,7 +12,7 @@ export class GithubService {
     'nhcarrigan',
     'beccalyria',
     'rosalianightsong',
-    'nhcommunity',
+    'naomis-novas',
     'beccalia',
   ];
   constructor(private http: HttpClient) {}
