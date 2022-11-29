@@ -41,6 +41,11 @@ button:disabled {
   border-radius: 50%;
 }
 
+.labels {
+  background-color: black;
+  border-radius: 50px;
+}
+
 .label {
   border-radius: 50px;
   display: inline-block;
