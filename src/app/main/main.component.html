@@ -24,6 +24,12 @@
   <button [disabled]="focusedView === 'pulls'" (click)="setView('pulls')">
     Pulls
   </button>
+  <button
+    [disabled]="focusedView === 'assignments'"
+    (click)="setView('assignments')"
+  >
+    Assigned Issues
+  </button>
   <div *ngIf="focusedView === 'issues'">
     <p>Choose an organisation:</p>
     <button
@@ -141,6 +147,10 @@
         }}
         #{{ issue.number }}
       </p>
+      <section class="assignee" *ngIf="issue.assignee">
+        <img class="sm-avatar" src="{{ issue.assignee.avatar_url }}" />
+        <p>Assigned to: {{ issue.assignee.login }}</p>
+      </section>
       <section class="labels">
         <span
           class="label"
@@ -171,6 +181,32 @@
           >{{ label.name }}</span
         >
       </section>
+    </section>
+  </div>
+</div>
+<div *ngIf="focusedView === 'assignments'">
+  <p>
+    This view shows which users have issues assigned to them. This can be
+    helpful if you want to check what issues you are working on, or if you want
+    to find a contributor to pair with.
+  </p>
+  <div class="assignment" *ngFor="let assignment of assignments">
+    <img class="avatar" src="{{ assignment.avatar }}" />
+    <section>
+      <p>{{ assignment.username }} is assigned:</p>
+      <details>
+        <summary>{{ assignment.issues.length }} issues</summary>
+        <ul class="no-marker">
+          <li *ngFor="let issue of assignment.issues">
+            <a href="{{ issue.url }}">
+              {{
+                issue.url.split("/").reverse().slice(0, 2).reverse().join("/")
+              }}
+              #{{ issue.number }}</a
+            >
+          </li>
+        </ul>
+      </details>
     </section>
   </div>
 </div>

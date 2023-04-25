@@ -3,6 +3,7 @@ import { AggregateData } from 'src/interfaces/AggregateData';
 import { Issue } from 'src/interfaces/Issue';
 import { Pull } from 'src/interfaces/Pull';
 import { GithubService } from '../github.service';
+import { Assignment } from 'src/interfaces/Assignment';
 
 @Component({
   selector: 'app-main',
@@ -39,9 +40,10 @@ export class MainComponent implements OnInit {
   public dataString = '';
   public focusedOrg: keyof AggregateData = 'nhcarrigan';
   public focusedLabel = '';
-  public focusedView: 'issues' | 'pulls' = 'issues';
+  public focusedView: 'issues' | 'pulls' | 'assignments' = 'issues';
   public filteredIssues: Issue[] = [];
   public filteredPulls: Pull[] = [];
+  public assignments: Assignment[] = [];
   public loaded = false;
 
   public filterIssues = (org: keyof AggregateData, label: string) => {
@@ -117,8 +119,35 @@ export class MainComponent implements OnInit {
     }%, ${borderAlpha}); color: hsl(${h}, ${s}%, ${l + lightenBy}%);`;
   };
 
-  public setView = (view: 'issues' | 'pulls') => {
+  public setView = (view: 'issues' | 'pulls' | 'assignments') => {
     this.focusedView = view;
+  };
+
+  private getAssignments = () => {
+    const issuesArray = [
+      ...this.githubData.beccalia.issues,
+      ...this.githubData.beccalyria.issues,
+      ...this.githubData['naomi-lgbt'].issues,
+      ...this.githubData['naomis-novas'].issues,
+      ...this.githubData.nhcarrigan.issues,
+      ...this.githubData.rosalianightsong.issues,
+    ];
+    for (const issue of issuesArray) {
+      if (!issue.assignee) continue;
+      const result = this.assignments.find(
+        (el) => el.username === issue.assignee.login
+      );
+      if (!result) {
+        this.assignments.push({
+          username: issue.assignee.login,
+          avatar: issue.assignee.avatar_url,
+          issues: [issue],
+        });
+        continue;
+      }
+      result.issues.push(issue);
+    }
+    this.assignments.sort((a, b) => a.username.localeCompare(b.username));
   };
 
   constructor(private getDataService: GithubService) {}
@@ -128,6 +157,7 @@ export class MainComponent implements OnInit {
       this.githubData = data;
       this.dataString = JSON.stringify(data, null, 2);
       this.filterIssues(this.focusedOrg, this.focusedLabel);
+      this.getAssignments();
       this.loaded = true;
     });
   }
