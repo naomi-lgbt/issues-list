@@ -39,6 +39,7 @@ button:disabled {
 .avatar {
   width: 100px;
   border-radius: 50%;
+  vertical-align: middle;
 }
 
 .assignee p {
@@ -61,4 +62,17 @@ button:disabled {
   display: inline-block;
   margin: 2px;
   padding: 2px;
+}
+
+.assignment {
+  display: grid;
+  grid-template-columns: 100px auto;
+}
+
+.no-marker {
+  list-style: none;
+}
+
+.no-marker li {
+  margin: auto;
 }
