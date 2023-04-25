@@ -41,6 +41,16 @@ button:disabled {
   border-radius: 50%;
 }
 
+.assignee p {
+  display: inline-block;
+}
+
+.sm-avatar {
+  width: 50px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
 .labels {
   background-color: black;
   border-radius: 50px;

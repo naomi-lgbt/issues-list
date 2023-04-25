@@ -141,6 +141,10 @@
         }}
         #{{ issue.number }}
       </p>
+      <section class="assignee" *ngIf="issue.assignee">
+        <img class="sm-avatar" src="{{ issue.assignee.avatar_url }}" />
+        <p>Assigned to: {{ issue.assignee.login }}</p>
+      </section>
       <section class="labels">
         <span
           class="label"
