@@ -76,3 +76,7 @@ button:disabled {
 .no-marker li {
   margin: auto;
 }
+
+.bold {
+  font-weight: bold;
+}

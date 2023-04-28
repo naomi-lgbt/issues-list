@@ -18,6 +18,12 @@
       >support server</a
     >!
   </p>
+  <p>
+    Data were updated at:
+    <span class="bold">{{
+      updatedAt ? updatedAt.toLocaleString() : "loading..."
+    }}</span>
+  </p>
   <button [disabled]="focusedView === 'issues'" (click)="setView('issues')">
     Issues
   </button>
