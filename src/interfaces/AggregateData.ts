@@ -26,4 +26,5 @@ export interface AggregateData {
     issues: Issue[];
     pulls: Pull[];
   };
+  updatedAt: number;
 }

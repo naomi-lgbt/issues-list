@@ -36,17 +36,22 @@ export class MainComponent implements OnInit {
       issues: [],
       pulls: [],
     },
+    updatedAt: 0,
   };
   public dataString = '';
-  public focusedOrg: keyof AggregateData = 'nhcarrigan';
+  public focusedOrg: keyof Omit<AggregateData, 'updatedAt'> = 'nhcarrigan';
   public focusedLabel = '';
   public focusedView: 'issues' | 'pulls' | 'assignments' = 'issues';
   public filteredIssues: Issue[] = [];
   public filteredPulls: Pull[] = [];
   public assignments: Assignment[] = [];
+  public updatedAt: Date | null = null;
   public loaded = false;
 
-  public filterIssues = (org: keyof AggregateData, label: string) => {
+  public filterIssues = (
+    org: keyof Omit<AggregateData, 'updatedAt'>,
+    label: string
+  ) => {
     this.focusedView = 'issues';
     this.focusedOrg = org;
     this.focusedLabel = label;
@@ -57,7 +62,10 @@ export class MainComponent implements OnInit {
     );
   };
 
-  public filterPulls = (org: keyof AggregateData, label: string) => {
+  public filterPulls = (
+    org: keyof Omit<AggregateData, 'updatedAt'>,
+    label: string
+  ) => {
     this.focusedView = 'pulls';
     this.focusedOrg = org;
     this.focusedLabel = label;
@@ -158,6 +166,7 @@ export class MainComponent implements OnInit {
       this.dataString = JSON.stringify(data, null, 2);
       this.filterIssues(this.focusedOrg, this.focusedLabel);
       this.getAssignments();
+      this.updatedAt = new Date(data.updatedAt);
       this.loaded = true;
     });
   }
