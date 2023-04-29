@@ -129,6 +129,12 @@ export class MainComponent implements OnInit {
 
   public setView = (view: 'issues' | 'pulls' | 'assignments') => {
     this.focusedView = view;
+    if (view === 'issues') {
+      this.filterIssues(this.focusedOrg, this.focusedLabel);
+    }
+    if (view === 'pulls') {
+      this.filterPulls(this.focusedOrg, this.focusedLabel);
+    }
   };
 
   private getAssignments = () => {
