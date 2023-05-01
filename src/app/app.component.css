@@ -3,14 +3,14 @@
   --dark-blue: #0b0080;
   --light-purple: #aea8de;
   --light-blue: #48d1cc;
-  --cursor-normal: url("https://www.nhcarrigan.com/assets/img/cursor.cur");
-  --cursor-pointer: url("https://www.nhcarrigan.com/assets/img/pointer.cur");
+  --cursor-normal: url("https://cdn.nhcarrigan.com/cursors/cursor.cur");
+  --cursor-pointer: url("https://cdn.nhcarrigan.com/cursors/pointer.cur");
 }
 
 body {
   margin: 0;
   text-align: center;
-  cursor: url("https://www.nhcarrigan.com/assets/img/cursor.cur"), default;
+  cursor: url("https://cdn.nhcarrigan.com/cursors/cursor.cur"), default;
   font-size: 1.2rem;
 }
 
