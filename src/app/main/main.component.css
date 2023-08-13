@@ -1,4 +1,4 @@
-div {
+.content {
   margin: auto;
   width: 85vw;
   max-width: 550px;
@@ -27,24 +27,44 @@ button:disabled {
   cursor: var(--cursor-normal), not-allowed;
 }
 
+.focus {
+  width: 100%;
+}
+
 .issues {
   margin: 10px auto;
-  border-radius: 50px;
   display: grid;
-  grid-template-columns: 100px auto;
+  grid-template-areas:
+    "title title"
+    "issue issue"
+    "avatar labels"
+    "assignee assignee";
+  grid-template-columns: 1fr 3fr;
   align-items: center;
   padding: 5px;
+}
+
+.name {
+  grid-area: title;
+}
+
+.issue {
+  grid-area: issue;
 }
 
 .avatar {
   width: 100px;
   border-radius: 50%;
   vertical-align: middle;
+  grid-area: avatar;
 }
 
-.assignee p {
-  display: inline-block;
+.assignee {
+  display: grid;
+  grid-area: assignee;
+  grid-template-columns: 1fr 3fr;
 }
+
 
 .sm-avatar {
   width: 50px;
@@ -52,9 +72,16 @@ button:disabled {
   vertical-align: middle;
 }
 
+.assign-avatar {
+  grid-area: avatar;
+  width: 50px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
 .labels {
   background-color: black;
-  border-radius: 50px;
+  grid-area: labels;
 }
 
 .label {
@@ -66,7 +93,18 @@ button:disabled {
 
 .assignment {
   display: grid;
-  grid-template-columns: 100px auto;
+  grid-template-areas:
+    "avatar user"
+    "issues issues";
+  grid-template-columns: 1fr 3fr;
+}
+
+.user {
+  grid-area: user;
+}
+
+.list {
+  grid-area: issues;
 }
 
 .no-marker {

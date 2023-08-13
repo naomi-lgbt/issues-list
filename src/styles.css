@@ -30,3 +30,42 @@ body::before {
   opacity: 1;
   pointer-events: none;
 }
+
+.content {
+  margin: auto;
+}
+
+/* NES.css Overrides */
+.nes-container.is-rounded {
+  background-color: rgb(174, 168, 222, 0.75);
+}
+
+.nes-container.is-rounded.with-title.is-centered {
+  margin-bottom: 20px;
+}
+
+.nes-container.is-rounded.with-title.is-centered.is-dark {
+  margin-bottom: 20px;
+  background-color: var(--dark-purple);
+  color: var(--light-purple);
+}
+
+.nes-container.is-rounded.with-title.is-centered.is-dark a {
+  color: var(--light-blue);
+}
+
+.nes-container.is-rounded.is-centered.is-dark {
+  margin-bottom: 20px;
+  background-color: var(--dark-purple);
+  color: var(--light-purple);
+}
+
+.nes-container.is-rounded.with-title.is-centered > .title {
+  background-color: var(--dark-purple);
+  color: var(--light-purple);
+  font-size: 1.5rem;
+}
+
+.nes-btn {
+  cursor: var(--cursor-pointer), pointer;
+}
