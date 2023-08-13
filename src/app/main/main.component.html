@@ -1,4 +1,4 @@
-<div>
+<div class="content nes-container with-title is-centered is-rounded">
   <h1>Naomi's Open Issues</h1>
   <p>
     This app is designed to allow you to see all of the open issues across all
@@ -36,7 +36,10 @@
   >
     Assigned Issues
   </button>
-  <div *ngIf="focusedView === 'issues'">
+  <div
+    class="focus nes-container with-title is-centered is-rounded is-dark"
+    *ngIf="focusedView === 'issues'"
+  >
     <p>Choose an organisation:</p>
     <button
       [disabled]="focusedOrg === 'naomi-lgbt'"
@@ -136,83 +139,89 @@
 </div>
 <div *ngIf="!loaded">Issues are loading...</div>
 <div *ngIf="focusedView === 'issues'">
-  <div class="issues" *ngFor="let issue of filteredIssues">
+  <div
+    class="issues content nes-container with-title is-centered is-rounded"
+    *ngFor="let issue of filteredIssues"
+  >
     <img class="avatar" src="{{ issue.user.avatar_url }}" />
-    <section>
-      <p>
-        <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
-      </p>
-      <p>
-        {{
-          issue.repository_url
-            .split("/")
-            .reverse()
-            .slice(0, 2)
-            .reverse()
-            .join("/")
-        }}
-        #{{ issue.number }}
-      </p>
-      <section class="assignee" *ngIf="issue.assignee">
-        <img class="sm-avatar" src="{{ issue.assignee.avatar_url }}" />
-        <p>Assigned to: {{ issue.assignee.login }}</p>
-      </section>
-      <section class="labels">
-        <span
-          class="label"
-          *ngFor="let label of issue.labels"
-          style="{{ getColour(label.color) }}"
-          >{{ label.name }}</span
-        >
-      </section>
+    <p class="name">
+      <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
+    </p>
+    <p class="issue">
+      {{
+        issue.repository_url
+          .split("/")
+          .reverse()
+          .slice(0, 2)
+          .reverse()
+          .join("/")
+      }}
+      #{{ issue.number }}
+    </p>
+    <section class="assignee" *ngIf="issue.assignee">
+      <img class="sm-avatar" src="{{ issue.assignee.avatar_url }}" />
+      <p>Assigned to: {{ issue.assignee.login }}</p>
+    </section>
+    <section
+      class="labels nes-container with-title is-centered is-rounded is-dark"
+      *ngIf="issue.labels.length"
+    >
+      <span
+        class="label"
+        *ngFor="let label of issue.labels"
+        style="{{ getColour(label.color) }}"
+        >{{ label.name }}</span
+      >
     </section>
   </div>
 </div>
 <div *ngIf="focusedView === 'pulls'">
-  <div class="issues" *ngFor="let issue of filteredPulls">
+  <div
+    class="issues content nes-container with-title is-centered is-rounded"
+    *ngFor="let issue of filteredPulls"
+  >
     <img class="avatar" src="{{ issue.user.avatar_url }}" />
-    <section>
-      <p>
-        <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
-      </p>
-      <p>
-        {{ issue.url.split("/").reverse().slice(0, 2).reverse().join("/") }}
-        #{{ issue.number }}
-      </p>
-      <section class="labels">
-        <span
-          class="label"
-          *ngFor="let label of issue.labels"
-          style="{{ getColour(label.color) }}"
-          >{{ label.name }}</span
-        >
-      </section>
+    <p class="name">
+      <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
+    </p>
+    <p class="issue">
+      {{ issue.url.split("/").reverse().slice(0, 2).reverse().join("/") }}
+      #{{ issue.number }}
+    </p>
+    <section
+      class="labels nes-container with-title is-centered is-rounded is-dark"
+    >
+      <span
+        class="label"
+        *ngFor="let label of issue.labels"
+        style="{{ getColour(label.color) }}"
+        >{{ label.name }}</span
+      >
     </section>
   </div>
 </div>
-<div *ngIf="focusedView === 'assignments'">
+<div
+  class="content nes-container with-title is-centered is-rounded"
+  *ngIf="focusedView === 'assignments'"
+>
   <p>
     This view shows which users have issues assigned to them. This can be
     helpful if you want to check what issues you are working on, or if you want
     to find a contributor to pair with.
   </p>
-  <div class="assignment" *ngFor="let assignment of assignments">
-    <img class="avatar" src="{{ assignment.avatar }}" />
-    <section>
-      <p>{{ assignment.username }} is assigned:</p>
-      <details>
-        <summary>{{ assignment.issues.length }} issues</summary>
-        <ul class="no-marker">
-          <li *ngFor="let issue of assignment.issues">
-            <a href="{{ issue.url }}">
-              {{
-                issue.url.split("/").reverse().slice(0, 2).reverse().join("/")
-              }}
-              #{{ issue.number }}</a
-            >
-          </li>
-        </ul>
-      </details>
-    </section>
+  <div class="assignment nes-container with-title is-centered is-rounded is-dark" *ngFor="let assignment of assignments">
+    <img class="assign-avatar" src="{{ assignment.avatar }}" />
+    <p class="user">{{ assignment.username }} is assigned:</p>
+    <details class="list">
+      <summary>{{ assignment.issues.length }} issues</summary>
+      <ul class="no-marker">
+        <li *ngFor="let issue of assignment.issues">
+          <a href="{{ issue.url }}">
+            {{ issue.url.split("/").reverse().slice(0, 2).reverse().join("/") }}
+            #{{ issue.number }}</a
+          >
+        </li>
+      </ul>
+    </details>
   </div>
 </div>
