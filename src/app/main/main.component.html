@@ -185,7 +185,7 @@
       <a href="{{ issue.url }}" target="_blank">{{ issue.title }}</a>
     </p>
     <p class="issue">
-      {{ issue.url.split("/").reverse().slice(0, 2).reverse().join("/") }}
+      {{ issue.url.split("/").reverse().slice(2, 4).reverse().join("/") }}
       #{{ issue.number }}
     </p>
     <section
@@ -217,7 +217,7 @@
       <ul class="no-marker">
         <li *ngFor="let issue of assignment.issues">
           <a href="{{ issue.url }}">
-            {{ issue.url.split("/").reverse().slice(0, 2).reverse().join("/") }}
+            {{ issue.url.split("/").reverse().slice(2, 4).reverse().join("/") }}
             #{{ issue.number }}</a
           >
         </li>

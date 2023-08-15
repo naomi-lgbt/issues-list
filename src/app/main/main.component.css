@@ -42,6 +42,7 @@ button:disabled {
   grid-template-columns: 1fr 3fr;
   align-items: center;
   padding: 5px;
+  word-wrap: break-word;
 }
 
 .name {
