@@ -75,7 +75,7 @@
       [disabled]="focusedOrg === 'naomis-novas'"
       (click)="filterIssues('naomis-novas', focusedLabel)"
     >
-      Naomi's Nook
+      Naomi's Novas
     </button>
     <p>Filter by label:</p>
     <button
@@ -133,7 +133,7 @@
       [disabled]="focusedOrg === 'naomis-novas'"
       (click)="filterPulls('naomis-novas', focusedLabel)"
     >
-      Naomi's Nook
+      Naomi's Novas
     </button>
   </div>
 </div>
@@ -209,7 +209,10 @@
     helpful if you want to check what issues you are working on, or if you want
     to find a contributor to pair with.
   </p>
-  <div class="assignment nes-container with-title is-centered is-rounded is-dark" *ngFor="let assignment of assignments">
+  <div
+    class="assignment nes-container with-title is-centered is-rounded is-dark"
+    *ngFor="let assignment of assignments"
+  >
     <img class="assign-avatar" src="{{ assignment.avatar }}" />
     <p class="user">{{ assignment.username }} is assigned:</p>
     <details class="list">
