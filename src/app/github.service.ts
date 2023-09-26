@@ -8,13 +8,6 @@ import { AggregateData } from 'src/interfaces/AggregateData';
 })
 export class GithubService {
   public responseCache = new Map();
-  private orgList: (keyof AggregateData)[] = [
-    'nhcarrigan',
-    'beccalyria',
-    'rosalianightsong',
-    'naomis-novas',
-    'beccalia',
-  ];
   constructor(private http: HttpClient) {}
 
   public getIssues(): Observable<AggregateData> {
