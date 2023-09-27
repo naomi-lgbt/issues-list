@@ -7,7 +7,7 @@
   </p>
   <p>
     To help you get started, we encourage you to review our
-    <a href="https://docs.nhcarrigan.com" target="_blank"
+    <a href="https://docs.nhcarrigan.com/#/contributing" target="_blank"
       >contributing guidelines</a
     >
     first. You can also chat with us on our
@@ -53,30 +53,6 @@
     >
       nhcarrigan
     </button>
-    <button
-      [disabled]="focusedOrg === 'beccalyria'"
-      (click)="filterIssues('beccalyria', focusedLabel)"
-    >
-      Becca Lyria
-    </button>
-    <button
-      [disabled]="focusedOrg === 'rosalianightsong'"
-      (click)="filterIssues('rosalianightsong', focusedLabel)"
-    >
-      Rosalia Nightsong
-    </button>
-    <button
-      [disabled]="focusedOrg === 'beccalia'"
-      (click)="filterIssues('beccalia', focusedLabel)"
-    >
-      Beccalia
-    </button>
-    <button
-      [disabled]="focusedOrg === 'naomis-novas'"
-      (click)="filterIssues('naomis-novas', focusedLabel)"
-    >
-      Naomi's Novas
-    </button>
     <p>Filter by label:</p>
     <button
       [disabled]="focusedLabel === 'good first issue'"
@@ -110,30 +86,6 @@
       (click)="filterPulls('nhcarrigan', focusedLabel)"
     >
       nhcarrigan
-    </button>
-    <button
-      [disabled]="focusedOrg === 'beccalyria'"
-      (click)="filterPulls('beccalyria', focusedLabel)"
-    >
-      Becca Lyria
-    </button>
-    <button
-      [disabled]="focusedOrg === 'rosalianightsong'"
-      (click)="filterPulls('rosalianightsong', focusedLabel)"
-    >
-      Rosalia Nightsong
-    </button>
-    <button
-      [disabled]="focusedOrg === 'beccalia'"
-      (click)="filterPulls('beccalia', focusedLabel)"
-    >
-      Beccalia
-    </button>
-    <button
-      [disabled]="focusedOrg === 'naomis-novas'"
-      (click)="filterPulls('naomis-novas', focusedLabel)"
-    >
-      Naomi's Novas
     </button>
   </div>
 </div>

@@ -20,22 +20,6 @@ export class MainComponent implements OnInit {
       issues: [],
       pulls: [],
     },
-    beccalyria: {
-      issues: [],
-      pulls: [],
-    },
-    beccalia: {
-      issues: [],
-      pulls: [],
-    },
-    rosalianightsong: {
-      issues: [],
-      pulls: [],
-    },
-    'naomis-novas': {
-      issues: [],
-      pulls: [],
-    },
     updatedAt: 0,
   };
   public dataString = '';
@@ -139,12 +123,8 @@ export class MainComponent implements OnInit {
 
   private getAssignments = () => {
     const issuesArray = [
-      ...this.githubData.beccalia.issues,
-      ...this.githubData.beccalyria.issues,
       ...this.githubData['naomi-lgbt'].issues,
-      ...this.githubData['naomis-novas'].issues,
       ...this.githubData.nhcarrigan.issues,
-      ...this.githubData.rosalianightsong.issues,
     ];
     for (const issue of issuesArray) {
       if (!issue.assignee) continue;
