@@ -1,8 +1,8 @@
-import { Issue } from './Issue';
-import { Pull } from './Pull';
+import { Issue } from "./Issue";
+import { Pull } from "./Pull";
 
 export interface AggregateData {
-  'naomi-lgbt': {
+  "naomi-lgbt": {
     issues: Issue[];
     pulls: Pull[];
   };

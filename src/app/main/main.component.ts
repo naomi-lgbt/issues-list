@@ -1,31 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { AggregateData } from 'src/interfaces/AggregateData';
-import { Issue } from 'src/interfaces/Issue';
-import { Pull } from 'src/interfaces/Pull';
-import { GithubService } from '../github.service';
-import { Assignment } from 'src/interfaces/Assignment';
+import { Component, OnInit } from "@angular/core";
 
+import { AggregateData } from "../../interfaces/AggregateData";
+import { Assignment } from "../../interfaces/Assignment";
+import { Issue } from "../../interfaces/Issue";
+import { Pull } from "../../interfaces/Pull";
+import { GithubService } from "../github.service";
+
+/**
+ *
+ */
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  selector: "app-main",
+  templateUrl: "./main.component.html",
+  styleUrls: ["./main.component.css"]
 })
 export class MainComponent implements OnInit {
   public githubData: AggregateData = {
-    'naomi-lgbt': {
+    "naomi-lgbt": {
       issues: [],
-      pulls: [],
+      pulls: []
     },
     nhcarrigan: {
       issues: [],
-      pulls: [],
+      pulls: []
     },
-    updatedAt: 0,
+    updatedAt: 0
   };
-  public dataString = '';
-  public focusedOrg: keyof Omit<AggregateData, 'updatedAt'> = 'nhcarrigan';
-  public focusedLabel = '';
-  public focusedView: 'issues' | 'pulls' | 'assignments' = 'issues';
+  public dataString = "";
+  public focusedOrg: keyof Omit<AggregateData, "updatedAt"> = "nhcarrigan";
+  public focusedLabel = "";
+  public focusedView: "issues" | "pulls" | "assignments" = "issues";
   public filteredIssues: Issue[] = [];
   public filteredPulls: Pull[] = [];
   public assignments: Assignment[] = [];
@@ -33,24 +37,25 @@ export class MainComponent implements OnInit {
   public loaded = false;
 
   public filterIssues = (
-    org: keyof Omit<AggregateData, 'updatedAt'>,
+    org: keyof Omit<AggregateData, "updatedAt">,
     label: string
   ) => {
-    this.focusedView = 'issues';
+    this.focusedView = "issues";
     this.focusedOrg = org;
     this.focusedLabel = label;
-    this.filteredIssues = this.githubData[this.focusedOrg].issues.filter((el) =>
-      this.focusedLabel
-        ? el.labels.find((label) => label.name === this.focusedLabel)
-        : el
+    this.filteredIssues = this.githubData[this.focusedOrg].issues.filter(
+      (el) =>
+        this.focusedLabel
+          ? el.labels.find((label) => label.name === this.focusedLabel)
+          : el
     );
   };
 
   public filterPulls = (
-    org: keyof Omit<AggregateData, 'updatedAt'>,
+    org: keyof Omit<AggregateData, "updatedAt">,
     label: string
   ) => {
-    this.focusedView = 'pulls';
+    this.focusedView = "pulls";
     this.focusedOrg = org;
     this.focusedLabel = label;
     this.filteredPulls = this.githubData[this.focusedOrg].pulls;
@@ -111,23 +116,25 @@ export class MainComponent implements OnInit {
     }%, ${borderAlpha}); color: hsl(${h}, ${s}%, ${l + lightenBy}%);`;
   };
 
-  public setView = (view: 'issues' | 'pulls' | 'assignments') => {
+  public setView = (view: "issues" | "pulls" | "assignments") => {
     this.focusedView = view;
-    if (view === 'issues') {
+    if (view === "issues") {
       this.filterIssues(this.focusedOrg, this.focusedLabel);
     }
-    if (view === 'pulls') {
+    if (view === "pulls") {
       this.filterPulls(this.focusedOrg, this.focusedLabel);
     }
   };
 
   private getAssignments = () => {
     const issuesArray = [
-      ...this.githubData['naomi-lgbt'].issues,
-      ...this.githubData.nhcarrigan.issues,
+      ...this.githubData["naomi-lgbt"].issues,
+      ...this.githubData.nhcarrigan.issues
     ];
     for (const issue of issuesArray) {
-      if (!issue.assignee) continue;
+      if (!issue.assignee) {
+        continue;
+      }
       const result = this.assignments.find(
         (el) => el.username === issue.assignee.login
       );
@@ -135,7 +142,7 @@ export class MainComponent implements OnInit {
         this.assignments.push({
           username: issue.assignee.login,
           avatar: issue.assignee.avatar_url,
-          issues: [issue],
+          issues: [issue]
         });
         continue;
       }
@@ -144,8 +151,15 @@ export class MainComponent implements OnInit {
     this.assignments.sort((a, b) => a.username.localeCompare(b.username));
   };
 
+  /**
+   *
+   * @param {GithubService} getDataService The instance of the GitHub service.
+   */
   constructor(private getDataService: GithubService) {}
 
+  /**
+   *
+   */
   ngOnInit(): void {
     this.getDataService.getIssues().subscribe((data) => {
       this.githubData = data;
